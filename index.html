@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U型开口计算器</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+    <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    #app {
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .button {
+        width: 100%;
+        display: flex;
+        margin-top: 20px;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <el-form ref="form" :model="form" label-width="30px" style="width: 90%;">
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <span>左大U，右大U开口尺寸</span>
+                </div>
+                <el-form-item label="宽">
+                    <el-input-number :controls="false" style="width: 100%;" @change="widthCount" v-model="form.width"></el-input>
+                </el-form-item>
+                <el-form-item label="高">
+                    <el-input-number :controls="false" style="width: 100%;" @change="heightCount" v-model="form.height"></el-input>
+                </el-form-item>
+                <div class="num">
+                    <div>
+                        U型开口宽：{{widthTotal}}
+                    </div>
+                    <div>
+                        U型开口高：{{hegihtTotal}}
+                    </div>
+                </div>
+                <div class="button">
+                    <el-button style="margin: 0 auto; width: 200px;" size="small" type="primary">计算</el-button>
+                </div>
+            </el-card>
+            <el-card class="box-card" style="margin-top: 20px;">
+                <div slot="header" class="clearfix">
+                    <span>下大U开口尺寸</span>
+                </div>
+                <el-form-item label="宽">
+                    <el-input-number :controls="false" style="width: 100%;" @change="widthCount1" v-model="form.width1"></el-input>
+                </el-form-item>
+                <el-form-item label="高">
+                    <el-input-number :controls="false" style="width: 100%;" @change="heightCount1" v-model="form.height1"></el-input>
+                </el-form-item>
+                <div class="num">
+                    <div class="num">
+                        <div>
+                            U型开口宽：{{widthTotal1}}
+                        </div>
+                        <div>
+                            U型开口高：{{hegihtTotal1}}
+                        </div>
+                    </div>
+                </div>
+                <div class="button">
+                    <el-button style="margin:  0 auto;width: 200px;" size="small" type="primary">计算</el-button>
+                </div>
+            </el-card>
+        </el-form>
+        <div></div>
+    </div>
+</body>
+<script>
+    let v = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                form: {
+                    width: "",
+                    height: "",
+                    width1: "",
+                    height1: ""
+                },
+                widthTotal: null,
+                hegihtTotal: null,
+                widthTotal1: null,
+                hegihtTotal1: null,
+            }
+        },
+        methods: {
+            widthCount(val) {
+                console.log(123);
+                this.widthTotal = Math.ceil(this.form.width / 2 + 3)
+            },
+            heightCount(val) {
+                this.hegihtTotal = Math.ceil(this.form.height * 2 / 3)
+            },
+            widthCount1(val) {
+                this.widthTotal1 = Math.ceil(this.form.width1 * 2 / 3)
+            },
+            heightCount1(val) {
+                this.hegihtTotal1 = Math.ceil(this.form.height1 / 2 + 3)
+            },
+        }
+    })
+</script>
+
+</html>
